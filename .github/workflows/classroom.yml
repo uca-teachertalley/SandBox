@@ -19,5 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: education/autograding@v1
-      
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
+            
         
