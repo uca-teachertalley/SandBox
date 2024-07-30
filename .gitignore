@@ -9,11 +9,6 @@
 build
 .DS_Store
 
-# copied student files need to be ignored
-main.cpp
-tests.cpp
-MessageBox.h
-
 # generated executables
 main
 tests
