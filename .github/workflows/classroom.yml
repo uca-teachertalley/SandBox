@@ -12,8 +12,12 @@ permissions:
 jobs:
   build:
     name: Autograding
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
     steps:
       - uses: actions/checkout@v4
       - uses: education/autograding@v1
+      
+        
