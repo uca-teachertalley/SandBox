@@ -1,28 +1,28 @@
-name: GitHub Classroom Workflow
-
-on:
-  - push
-  - workflow_dispatch
-
+name: Autograding Tests
+'on': {}
 permissions:
   checks: write
   actions: read
   contents: read
-
 jobs:
-  build:
-    name: Autograding
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
+  run-autograding-tests:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
     steps:
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - uses: actions/checkout@v4        
-      - uses: education/autograding@v1
-        env:
-          FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
-            
-        
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: AutoTest Setup
+      id: autotest-setup
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: AutoTest Setup
+        setup-command: git clone https://github.com/TeacherTalley/SandBox_AutoTest.git
+        command: cd SandBox_AutoTest && ./AutoTest_setup.sh
+        timeout: 10
+        max-score: 0
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        AUTOTEST-SETUP_RESULTS: "${{steps.autotest-setup.outputs.result}}"
+      with:
+        runners: autotest-setup
