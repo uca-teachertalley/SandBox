@@ -30,7 +30,7 @@ jobs:
         setup-command: ''
         command: "./SandBox_AutoTest/AutoTest_Style.sh"
         timeout: 10
-        max-score: 20
+        max-score: 200
     - name: Main Output
       id: main-output
       uses: classroom-resources/autograding-command-grader@v1
