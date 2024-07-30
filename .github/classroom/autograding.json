@@ -1,0 +1,84 @@
+{
+  "tests": [
+    {
+      "name": "AutoTest Setup",
+      "setup": "git clone https://github.com/TeacherTalley/SandBox_AutoTest.git",
+      "run": "cd SandBox_AutoTest && ./AutoTest_setup.sh",
+      "input": null,
+      "output": null,
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 0
+    },
+    {
+      "name": "Coding Style",
+      "setup": "",
+      "run": "./SandBox_AutoTest/AutoTest_Style.sh",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 0
+    },
+    {
+      "name": "Main Output",
+      "setup": "",
+      "run": "./SandBox_AutoTest/AutoTest_OutputTest.sh",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 0
+    },
+    {
+      "name": "SandBox SendAndReceive",
+      "setup": "",
+      "run": "./SandBox_AutoTest/AutoTest_gtest.sh MessageBox.SendAndReceive",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 20
+    },
+    {
+      "name": "SandBox OutOfRange",
+      "setup": "",
+      "run": "./SandBox_AutoTest/AutoTest_gtest.sh MessageBox.OutOfRange",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 20
+    },
+    {
+      "name": "SandBox FullAndEmpty",
+      "setup": "",
+      "run": "./SandBox_AutoTest/AutoTest_gtest.sh MessageBox.FullAndEmpty",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 20
+    },
+    {
+      "name": "SandBox CountAndSize",
+      "setup": "",
+      "run": "./SandBox_AutoTest/AutoTest_gtest.sh MessageBox.CountAndSize",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 20
+    },
+    {
+      "name": "SandBox Print",
+      "setup": "",
+      "run": "./SandBox_AutoTest/AutoTest_gtest.sh MessageBox.Print",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 20
+    }
+  ]
+}
