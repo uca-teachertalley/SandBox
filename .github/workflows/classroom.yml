@@ -1,5 +1,7 @@
 name: Autograding Tests
-'on': {}
+'on':
+- push
+- repository_dispatch
 permissions:
   checks: write
   actions: read
@@ -20,9 +22,79 @@ jobs:
         command: cd SandBox_AutoTest && ./AutoTest_setup.sh
         timeout: 10
         max-score: 0
+    - name: Coding Style
+      id: coding-style
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Coding Style
+        setup-command: ''
+        command: "./SandBox_AutoTest/AutoTest_Style.sh"
+        timeout: 10
+        max-score: 20
+    - name: Main Output
+      id: main-output
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Main Output
+        setup-command: ''
+        command: "./SandBox_AutoTest/AutoTest_OutputTest.sh"
+        timeout: 10
+        max-score: 20
+    - name: SandBox SendAndReceive
+      id: sandbox-sendandreceive
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: SandBox SendAndReceive
+        setup-command: ''
+        command: "./SandBox_AutoTest/AutoTest_gtest.sh MessageBox.SendAndReceive"
+        timeout: 10
+        max-score: 20
+    - name: SandBox OutOfRange
+      id: sandbox-outofrange
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: SandBox OutOfRange
+        setup-command: ''
+        command: "./SandBox_AutoTest/AutoTest_gtest.sh MessageBox.OutOfRange"
+        timeout: 10
+        max-score: 20
+    - name: SandBox FullAndEmpty
+      id: sandbox-fullandempty
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: SandBox FullAndEmpty
+        setup-command: ''
+        command: "./SandBox_AutoTest/AutoTest_gtest.sh MessageBox.FullAndEmpty"
+        timeout: 10
+        max-score: 20
+    - name: SandBox CountAndSize
+      id: sandbox-countandsize
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: SandBox CountAndSize
+        setup-command: ''
+        command: "./SandBox_AutoTest/AutoTest_gtest.sh MessageBox.CountAndSize"
+        timeout: 10
+        max-score: 20
+    - name: SandBox Print
+      id: sandbox-print
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: SandBox Print
+        setup-command: ''
+        command: "./SandBox_AutoTest/AutoTest_gtest.sh MessageBox.Print"
+        timeout: 10
+        max-score: 20
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         AUTOTEST-SETUP_RESULTS: "${{steps.autotest-setup.outputs.result}}"
+        CODING-STYLE_RESULTS: "${{steps.coding-style.outputs.result}}"
+        MAIN-OUTPUT_RESULTS: "${{steps.main-output.outputs.result}}"
+        SANDBOX-SENDANDRECEIVE_RESULTS: "${{steps.sandbox-sendandreceive.outputs.result}}"
+        SANDBOX-OUTOFRANGE_RESULTS: "${{steps.sandbox-outofrange.outputs.result}}"
+        SANDBOX-FULLANDEMPTY_RESULTS: "${{steps.sandbox-fullandempty.outputs.result}}"
+        SANDBOX-COUNTANDSIZE_RESULTS: "${{steps.sandbox-countandsize.outputs.result}}"
+        SANDBOX-PRINT_RESULTS: "${{steps.sandbox-print.outputs.result}}"
       with:
-        runners: autotest-setup
+        runners: autotest-setup,coding-style,main-output,sandbox-sendandreceive,sandbox-outofrange,sandbox-fullandempty,sandbox-countandsize,sandbox-print
